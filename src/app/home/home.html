@@ -1,0 +1,130 @@
+<div class="hotels-container">
+  <header class="header">
+    <h1>🏨 Sistema de Reservas de Hoteles</h1>
+    <p>Encuentra el hotel perfecto para tu estadía</p>
+  </header>
+
+  <!-- Loading indicator -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Cargando hoteles...</p>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="error" class="error-message">
+    <p>❌ {{ error }}</p>
+    <button (click)="loadHotels()" class="retry-btn">Reintentar</button>
+  </div>
+
+  <!-- Hotels list -->
+  <div *ngIf="!loading && !error" class="hotels-grid">
+    <div *ngFor="let hotel of hotels" class="hotel-card">
+      <!-- Hotel Header -->
+      <div class="hotel-header">
+        <h2>{{ hotel.name }}</h2>
+        <span class="capacity">Capacidad: {{ hotel.capacity }} personas</span>
+      </div>
+
+      <!-- Hotel Info -->
+      <div class="hotel-info">
+        <div class="info-item">
+          <span class="icon">📍</span>
+          <div>
+            <strong>Dirección:</strong>
+            <p>{{ hotel.address }}, {{ hotel.city }}, {{ hotel.state }}</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="icon">📞</span>
+          <div>
+            <strong>Teléfono:</strong>
+            <p>{{ hotel.phone }}</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="icon">✉️</span>
+          <div>
+            <strong>Email:</strong>
+            <p>{{ hotel.email }}</p>
+          </div>
+        </div>
+
+        <div class="info-item description">
+          <span class="icon">ℹ️</span>
+          <div>
+            <strong>Descripción:</strong>
+            <p>{{ hotel.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rooms Section -->
+      <div class="rooms-section" *ngIf="hotel.rooms && hotel.rooms.length > 0">
+        <h3>🛏️ Habitaciones Disponibles</h3>
+        <div class="rooms-grid">
+          <div *ngFor="let room of hotel.rooms" class="room-card" [class.unavailable]="!room.is_available">
+            <div class="room-header">
+              <span class="room-number">{{ room.room_number }}</span>
+              <span class="availability" [class.available]="room.is_available">
+                {{ room.is_available ? '✅ Disponible' : '❌ No Disponible' }}
+              </span>
+            </div>
+            <div class="room-details">
+              <p><strong>Tipo:</strong> {{ room.room_type.name }}</p>
+              <p><strong>Precio Base:</strong> ${{ room.room_type.base_price | number:'1.0-0' }}</p>
+              <p><strong>Capacidad Máxima:</strong> {{ room.room_type.max_capacity }} personas</p>
+              <p><strong>Descripción:</strong> {{ room.room_type.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Temporadas Section -->
+      <div class="seasons-section" *ngIf="hotel.temporate && hotel.temporate.length > 0">
+        <h3>📅 Temporadas Especiales</h3>
+        <div class="seasons-grid">
+          <div *ngFor="let season of hotel.temporate" class="season-card">
+            <div class="season-header">
+              <span class="season-name">{{ season.season | titlecase }}</span>
+              <span class="multiplier">{{ season.price_multiplier }}x</span>
+            </div>
+            <div class="season-dates">
+              <p><strong>Desde:</strong> {{ season.start_date | date:'dd/MM/yyyy' }}</p>
+              <p><strong>Hasta:</strong> {{ season.end_date | date:'dd/MM/yyyy' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hotel-actions">
+        <button class="btn-primary" (click)="onReservar(hotel)">
+          🎯 Reservar Ahora
+        </button>
+        <button class="btn-secondary">
+          📋 Ver Detalles
+        </button>
+        <button class="btn-secondary">
+          💬 Contactar Hotel
+        </button>
+      </div>
+
+      <!-- Hotel Footer -->
+      <div class="hotel-footer">
+        <small>
+          Creado: {{ hotel.created_at | date:'dd/MM/yyyy HH:mm' }} | 
+          Actualizado: {{ hotel.updated_at | date:'dd/MM/yyyy HH:mm' }}
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <div *ngIf="!loading && !error && hotels.length === 0" class="empty-state">
+    <h2>🏨 No hay hoteles disponibles</h2>
+    <p>No se encontraron hoteles en el sistema.</p>
+    <button (click)="loadHotels()" class="btn-primary">Recargar</button>
+  </div>
+</div>

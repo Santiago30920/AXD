@@ -1,0 +1,398 @@
+/* Container principal */
+.hotels-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.header p {
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error message */
+.error-message {
+  text-align: center;
+  padding: 30px;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.retry-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.retry-btn:hover {
+  background-color: #c82333;
+}
+
+/* Hotels Grid */
+.hotels-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
+}
+
+/* Hotel Card */
+.hotel-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid #e9ecef;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Hotel Header */
+.hotel-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hotel-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.capacity {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Hotel Info */
+.hotel-info {
+  padding: 25px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.info-item .icon {
+  font-size: 1.2rem;
+  margin-right: 15px;
+  margin-top: 2px;
+  min-width: 25px;
+}
+
+.info-item div {
+  flex: 1;
+}
+
+.info-item strong {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.info-item p {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.description p {
+  font-style: italic;
+}
+
+/* Rooms Section */
+.rooms-section {
+  padding: 0 25px 25px;
+}
+
+.rooms-section h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.rooms-grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.room-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.room-card:hover {
+  background: #e8f4fd;
+  border-color: #667eea;
+}
+
+.room-card.unavailable {
+  background: #fff5f5;
+  border-color: #fed7d7;
+  opacity: 0.7;
+}
+
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.room-number {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.availability {
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  border-radius: 15px;
+  background: #fee;
+  color: #c53030;
+}
+
+.availability.available {
+  background: #f0fff4;
+  color: #38a169;
+}
+
+.room-details p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* Seasons Section */
+.seasons-section {
+  padding: 0 25px 25px;
+  border-top: 1px solid #e9ecef;
+  margin-top: 20px;
+  padding-top: 25px;
+}
+
+.seasons-section h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.seasons-grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.season-card {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  border-radius: 12px;
+  padding: 20px;
+  color: #333;
+}
+
+.season-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.season-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+}
+
+.multiplier {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.season-dates p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+/* Action Buttons */
+.hotel-actions {
+  padding: 25px;
+  background: #f8f9fa;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Hotel Footer */
+.hotel-footer {
+  padding: 15px 25px;
+  background: #f1f3f4;
+  border-top: 1px solid #e9ecef;
+  text-align: center;
+}
+
+.hotel-footer small {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #666;
+}
+
+.empty-state h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.empty-state p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hotels-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hotel-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .hotel-actions {
+    flex-direction: column;
+  }
+  
+  .rooms-grid,
+  .seasons-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
+  }
+}
